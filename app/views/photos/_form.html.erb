@@ -1,0 +1,38 @@
+<%= form_with(model: photo, local: true) do |form| %>
+  <% if photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+        <% photo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <table>
+      <tr><td>
+          <%= image_tag('woman', style: 'height:200px;width:auto') %>
+          <%= form.label :original, value: 'woman'  %>
+          <%= form.radio_button :original, 'woman'  %>
+        </td></tr>
+
+        <tr><td>
+            <%= image_tag('friends', style: 'height:200px;width:auto') %>
+            <%= form.label :original, value: 'friends'  %>
+            <%= form.radio_button :original, 'friends'  %>
+          </td></tr>
+    </table>
+  </div>
+
+  <div class="field">
+    <%= form.label :effect %>
+    <%= form.select :effect, Photo.effects.keys %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

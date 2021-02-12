@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Original:</strong>
+  <%= image_tag(@photo.original, style: 'height:200px;width:auto') %>
+</p>
+
+<p>
+  <strong>Effect:</strong>
+  <%= @photo.effect %>
+</p>
+
+<p>
+  <strong>Output image:</strong>
+  <%= image_tag(@photo.output_image, style: 'height:200px;width:auto') %>
+</p>
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
