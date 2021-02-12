@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  include Magick
   before_action :set_photo, only: %i[ show edit update destroy ]
 
   # GET /photos or /photos.json
@@ -100,13 +101,32 @@ class PhotosController < ApplicationController
     @photo.output_image = body['output_url']
   end
 
+  def blur_bg
+     b=a.composite_layers(i,Magick::OverCompositeOp)
+     b.write(file)
+  end
+
+  def blur
+    @photo.save
+    origin = ImageList.new(file)
+    final = origin.blur_image(30.0, 30.0)
+    final.write(file_result)
+    @photo.output_image = photo_name
+  end
+
   def remove_bg
     r = RemoveBg.from_file(file)
     @photo.save
-    photo_name = "results/#{@photo.id}_#{@photo.original}"
-    file_result=File.join(Rails.root, 'app', 'assets', 'images', photo_name)
     r.save(file_result)
     @photo.output_image = photo_name
+  end
+
+  def photo_name
+    "results/#{@photo.id}_#{@photo.original}"
+  end
+
+  def file_result
+    File.join(Rails.root, 'app', 'assets', 'images', photo_name)
   end
 
   def file

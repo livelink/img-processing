@@ -19,7 +19,7 @@
       <tr>
         <td> <%= image_tag(photo.original, style: 'height:200px;width:auto') %> </td>
         <td><%= photo.effect %></td>
-        <td> <%= image_tag(photo.output_image, alt: photo.output_image, style: 'height:200px;width:auto') %> </td>
+        <td> <%= image_tag(photo.output_image, alt: photo.output_image, style: 'height:200px;width:auto') unless photo.output_image.nil? %> </td>
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
