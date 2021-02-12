@@ -103,13 +103,13 @@ class PhotosController < ApplicationController
   def remove_bg
     r = RemoveBg.from_file(file)
     @photo.save
-    photo_name = "results/#{@photo.id}_#{@photo.original}.png"
+    photo_name = "results/#{@photo.id}_#{@photo.original}"
     file_result=File.join(Rails.root, 'app', 'assets', 'images', photo_name)
     r.save(file_result)
     @photo.output_image = photo_name
   end
 
   def file
-    File.join(Rails.root, 'app', 'assets', 'images', "#{@photo.original}.jpg")
+    File.join(Rails.root, 'app', 'assets', 'images', "#{@photo.original}")
   end
 end

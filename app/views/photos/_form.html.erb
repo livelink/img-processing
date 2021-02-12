@@ -13,17 +13,30 @@
 
   <div class="field">
     <table>
-      <tr><td>
+      <tr>
+        <td>
           <%= image_tag('woman', style: 'height:200px;width:auto') %>
+        </td><td>
           <%= form.label :original, value: 'woman'  %>
-          <%= form.radio_button :original, 'woman'  %>
-        </td></tr>
-
-        <tr><td>
-            <%= image_tag('friends', style: 'height:200px;width:auto') %>
-            <%= form.label :original, value: 'friends'  %>
-            <%= form.radio_button :original, 'friends'  %>
-          </td></tr>
+          <%= form.radio_button :original, 'woman.jpg'  %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag('friends', style: 'height:200px;width:auto') %>
+        </td><td>
+          <%= form.label :original, value: 'friends'  %>
+          <%= form.radio_button :original, 'friends.jpg'  %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag('tim', style: 'height:200px;width:auto') %>
+        </td><td>
+          <%= form.label :original, value: 'tim'  %>
+          <%= form.radio_button :original, 'tim.png'  %>
+        </td>
+      </tr>
     </table>
   </div>
 
