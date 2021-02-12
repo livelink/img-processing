@@ -102,8 +102,14 @@ class PhotosController < ApplicationController
   end
 
   def blur_bg
-     b=a.composite_layers(i,Magick::OverCompositeOp)
-     b.write(file)
+    remove_bg
+    origin = ImageList.new(file)
+    original_blur = origin.blur_image(30.0, 30.0)
+    without_bg = ImageList.new(file_result)
+    resized_without_bg = without_bg.scale(origin.columns, origin.rows)
+    resized_without_bg.write(file_result)
+    final = original_blur.composite(resized_without_bg, 0, 0, Magick::OverCompositeOp)
+    final.write(file_result)
   end
 
   def blur
