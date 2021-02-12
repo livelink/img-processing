@@ -8,6 +8,12 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+_.env_ keys to the AI APIs:
+
+```bash
+REMOVE_BG_KEY=...
+DEEPAI_KEY=...
+```
 
 * Configuration
 
